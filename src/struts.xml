@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="GBK"?>
+<!-- 指定Struts2配置文件的DTD信息 -->
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.1.7//EN"
+	"http://struts.apache.org/dtds/struts-2.1.7.dtd">
+<!-- Struts2配置文件的根元素 -->
+<struts>
+	<!-- 配置了系列常量 -->
+	<constant name="struts.custom.i18n.resources" value="resource"/>
+	<constant name="struts.i18n.encoding" value="GBK"/>
+	<constant name="struts.devMode" value="true"/>
+	<constant name="struts.objectFactory.spring.autoWire" value="name"/>
+	<package name="default" extends="struts-default">
+		<global-results>
+			<result name="error403">/error_403.jsp</result>
+		</global-results>
+		<global-exception-mappings>
+			<exception-mapping result="error403" 
+				exception="com.kedong.aop.PermissionException"></exception-mapping>
+		</global-exception-mappings>
+	</package>
+	
+	<package name="default2" extends="default">
+	<!--============================下面是员工角色的Action========================-->
+		<!-- 定义处理登出请求的Action -->
+		<action name="Login_*" class="com.kedong.action.LoginAction" method="{1}">
+			<result name="ok">index.jsp</result>
+		</action>
+				<!-- 定义处理登出请求的Action -->
+		<action name="test_*" class="com.kedong.action.TestAspectj" method="{1}">
+			<result name="ok">index.jsp</result>
+		</action>
+	</package>
+	
+
+</struts>
